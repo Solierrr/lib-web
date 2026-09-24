@@ -1,22 +1,51 @@
 {
-  "name": "desing-system",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@solierrr/lib-web",
+  "version": "0.1.0",
   "type": "module",
+  "packageManager": "npm@11.12.1",
+  "engines": {
+    "node": ">=24",
+    "npm": ">=11"
+  },
+  "description": "Reusable React interfaces for Solierrr web applications.",
+  "license": "Apache-2.0",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./style.css": "./dist/index.css"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build && tsc -p tsconfig.lib.json",
     "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.lib.json --noEmit",
+    "pack:check": "npm pack --dry-run",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "storybook": "^10.6.0"
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "storybook": "^10.6.0",
     "@eslint/js": "^10.0.1",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
