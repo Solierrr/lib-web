@@ -1,0 +1,27 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import Textarea from "./Textarea";
+import { DefaultTextarea, CharCountTextarea } from "./Textarea.presets";
+
+const meta = {
+  title: "UI/Textarea",
+  component: Textarea,
+  parameters: {
+    layout: "centered",
+  },
+  args: {
+    name: "description",
+    placeholder: "Descreva o produto",
+    rows: 4,
+  },
+} satisfies Meta<typeof Textarea>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => <DefaultTextarea {...args} />,
+};
+
+export const CharCount: Story = {
+  render: (args) => <CharCountTextarea name={args.name} placeholder={args.placeholder} rows={args.rows} maxLength={140} />,
+};
