@@ -1,1 +1,158 @@
-@import './components/Button/button.css';
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+@import "tw-shimmer";
+
+@theme {
+  --color-white: #FFFFFF;
+  --color-gray:  #797979;
+  --color-black: #444444;
+
+  --color-orange: #FF6500;
+  --color-green:  #00AA57;
+  --color-purple: #8D1BFF;
+
+  --color-dark-orange: #C46717;
+
+  --color-hyperlink: #306EEE;
+
+  --color-input-bg:      #4444440D;
+  --color-input-text:    #44444466;
+  --color-input-icon:    #AFAFAF;
+  --color-input-outline: #44444426;
+
+  --color-skeleton:           #4444441A;
+  --color-skeleton-highlight: #44444433;
+
+  --text-hero:     5.00rem;
+  --text-title:    2.10rem;
+  --text-subtitle: 1.65rem;
+  --text-label:    1.20rem;
+  --text-body:     1.00rem;
+  --text-lower:    0.85rem;
+
+  --font-weight-extra-bold: 800;
+  --font-weight-bold:       700;
+  --font-weight-semi-bold:  600;
+  --font-weight-medium:     500;
+  --font-weight-regular:    400;
+  --font-weight-light:      300;
+  --font-weight-thin:       200;
+
+  --spacing-announcement: 3rem;
+
+  --radius-small:  0.25rem;
+  --radius-soft:   0.35rem;
+  --radius-medium: 0.50rem;
+  --radius-hard:   0.80rem;
+  --radius-full:    9999px;
+
+  --animate-fade-in: fade-in 150ms ease-out;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-optical-sizing: auto;
+    font-synthesis: none;
+    font-style: normal;
+    font-weight: 300;
+    @apply text-body text-black;
+  }
+
+  body { @apply overflow-x-hidden }
+
+  h1     { @apply text-title    font-bold       leading-9; }
+  h2     { @apply text-subtitle font-semi-bold  leading-7; }
+  h3, h4 { @apply text-label    font-medium     leading-6; }
+  h6, h5 { @apply text-body     font-medium     leading-6; }
+  p      { @apply font-regular  leading-6; }
+
+  ::-webkit-scrollbar             { @apply w-2 cursor-default!;      }
+  ::-webkit-scrollbar-track       { @apply bg-transparent;           }
+  ::-webkit-scrollbar-thumb       { @apply bg-orange rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-dark-orange;         }
+
+  html, body {
+    scrollbar-gutter: stable;
+  }
+
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+  }
+
+  html:hover::-webkit-scrollbar-thumb,
+  body:hover::-webkit-scrollbar-thumb,
+  html.scroll-active::-webkit-scrollbar-thumb,
+  body.scroll-active::-webkit-scrollbar-thumb {
+    opacity: 1;
+  }
+
+  ::selection, mark { @apply bg-orange-500 text-white; }
+  :focus-visible { @apply outline-[0.155rem] outline-offset-[0.165rem] rounded-md outline-input-outline;}
+}
+
+@utility no-leading {
+  line-height: 1;
+  padding-bottom: 1px;
+}
+
+@utility bg-interactive {
+  @apply bg-black/8;
+}
+
+@utility bg-interactive-pseudo {
+  @apply bg-interactive hover:bg-black/14 active:bg-black/20 transition duration-350
+}
+
+@utility shadow-soft-* {
+  box-shadow: 0 0.125rem 0.5rem 0 color-mix(in srgb, --value(--color-*) 12%, transparent);
+}
+
+@utility shadow-medium-* {
+  box-shadow: 0 0.125rem 0.5rem 0 color-mix(in srgb, --value(--color-*) 12%, transparent);
+  &:hover {
+    box-shadow: 0 0.2rem 1rem 0.3rem color-mix(in srgb, --value(--color-*) 20%, transparent);
+  };
+  @apply transition-shadow duration-400;
+}
+
+@utility aspect-button-* {
+  background: linear-gradient(to top, --value(--color-*), color-mix(in srgb, --value(--color-*) 80%, var(--color-white)));
+  box-shadow:
+    inset 0 0.1rem 0.2rem 0 color-mix(in srgb, --value(--color-*) 50%, var(--color-white)),
+    inset 0 -0.2rem 0.8rem 0 color-mix(in srgb, --value(--color-*) 60%, var(--color-black)) !important;
+  border-color: color-mix(in srgb, --value(--color-*) 85%, var(--color-black));
+  @apply relative rounded-medium *:font-semi-bold! text-white border-2 cursor-pointer after:opacity-0 after:transition-opacity after:duration-150;
+  &::after {
+    content: "";
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.05) 60%, transparent 100%);
+    background-size: 200% 100%;
+    @apply absolute inset-0 size-full rounded-[inherit] pointer-events-none opacity-0;
+  };
+  &:hover::after {
+    @apply opacity-20;
+  };
+}
+
+* {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.input-scrollbar::-webkit-scrollbar-thumb       { @apply bg-input-outline rounded-full; }
+.input-scrollbar::-webkit-scrollbar-thumb:hover { @apply bg-input-text; }
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
