@@ -1,1 +1,39 @@
-@import './components/Button/button.css';
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  --color-white: #ffffff;
+  --color-gray: #797979;
+  --color-black: #444444;
+  --color-orange: #ff6500;
+  --color-green: #00aa57;
+  --color-hyperlink: #306eee;
+  --color-input-bg: #4444440d;
+  --color-input-text: #44444466;
+  --color-input-icon: #afafaf;
+  --color-input-outline: #44444426;
+  --color-skeleton: #4444441a;
+  --radius-small: 0.25rem;
+  --radius-soft: 0.35rem;
+  --radius-medium: 0.5rem;
+  --animate-fade-in: fade-in 150ms ease-out;
+}
+
+.solierrr-button {
+  min-height: 2.5rem;
+  padding: 0.5rem 1rem;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.solierrr-button:focus-visible {
+  outline: 2px solid var(--color-hyperlink);
+  outline-offset: 2px;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}

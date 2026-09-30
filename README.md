@@ -1,4 +1,4 @@
-# @solierrr/lib-web
+# @solierrr/web-lib
 
 Biblioteca de interfaces React reutilizáveis para as aplicações web da Solierrr.
 
@@ -7,19 +7,21 @@ O pacote é escrito em TypeScript, distribui tipos e mantém React como `peerDep
 ## Instalação
 
 ```bash
-npm install @solierrr/lib-web
+npm install @solierrr/web-lib
 ```
 
 ## Uso
 
 ```tsx
-import { Button } from '@solierrr/lib-web'
-import '@solierrr/lib-web/style.css'
+import { Button } from '@solierrr/web-lib'
+import '@solierrr/web-lib/style.css'
 
 export function SaveAction() {
   return <Button variant="primary">Salvar</Button>
 }
 ```
+
+O pacote exporta `Button`, `Input`, `Textarea`, `Select`, `Icon`, `MenuList`, `MenuItem`, `ContextMenu`, `ContextMenuProvider`, `useContextMenu` e `Skeleton`. `lucide-react` precisa estar instalado junto ao React 19.
 
 ## Desenvolvimento
 
@@ -33,14 +35,16 @@ npm run pack:check
 
 ## Publicação
 
-Os releases seguem versionamento semântico e os títulos de PR seguem Conventional Commits. Antes da primeira publicação, autentique a CLI na conta com acesso à organização:
+Os releases seguem versionamento semântico e os títulos de PR seguem Conventional Commits. O pacote inclui os controles compartilhados de `web-app`, seus ícones e a folha de estilos compilada. `web-app` continua com os arquivos originais enquanto a adoção acontece gradualmente.
+
+Antes da primeira publicação, autentique a CLI na conta com acesso à organização:
 
 ```bash
 npm login
 npm whoami
 ```
 
-Depois de versionar e aprovar o release, publique o pacote público com:
+O workflow `Publish npm package` publica automaticamente quando um GitHub Release é publicado. Configure o secret `NPM_TOKEN` no repositório GitHub com uma credencial de publicação para `@solierrr` antes de criar o primeiro release. Para publicar manualmente, depois de versionar e autenticar a CLI:
 
 ```bash
 npm publish
