@@ -47,7 +47,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.version.outputs.published == 'false'
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Validate package
         if: steps.version.outputs.published == 'false'
