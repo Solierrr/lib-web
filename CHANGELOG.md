@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/Solierrr/web-lib/compare/v0.3.0...v0.3.1) (2026-10-01)
+
+
+### Bug Fixes
+
+* point package repository to web-lib ([752b6c7](https://github.com/Solierrr/web-lib/commit/752b6c7e76af763f5c50563dfec98410d833a774))
+
 ## [0.3.0](https://github.com/Solierrr/web-lib/compare/v0.2.0...v0.3.0) (2026-10-01)
 
 
