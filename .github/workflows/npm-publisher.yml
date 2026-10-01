@@ -1,0 +1,60 @@
+name: NPM Publisher
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          cache: npm
+
+      - name: Check whether this version is already on npm
+        id: version
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          name=$(node -p "require('./package.json').name")
+          version=$(node -p "require('./package.json').version")
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+          if output=$(npm view "$name@$version" version 2>&1); then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "$name@$version já está no npm, nada a publicar."
+          elif grep -q "E404" <<< "$output"; then
+            echo "published=false" >> "$GITHUB_OUTPUT"
+            echo "$name@$version ainda não está no npm, será publicado."
+          else
+            echo "Não foi possível consultar o npm:"
+            echo "$output"
+            exit 1
+          fi
+
+      - name: Install dependencies
+        if: steps.version.outputs.published == 'false'
+        run: npm ci
+
+      - name: Validate package
+        if: steps.version.outputs.published == 'false'
+        run: npm run lint && npm run typecheck && npm run build && npm run pack:check
+
+      - name: Publish to npm
+        if: steps.version.outputs.published == 'false'
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

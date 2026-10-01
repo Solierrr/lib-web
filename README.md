@@ -44,7 +44,7 @@ npm login
 npm whoami
 ```
 
-O workflow `Publish npm package` publica automaticamente quando um GitHub Release é publicado. Configure o secret `NPM_TOKEN` no repositório GitHub com uma credencial de publicação para `@solierrr` antes de criar o primeiro release. Para publicar manualmente, depois de versionar e autenticar a CLI:
+O workflow `NPM Publisher` roda a cada push na `main` e publica a versão do `package.json` no npm, somente se ela ainda não existir no registro; a versão é atualizada pelo release-please ao mergear a PR de release. Configure o secret `NPM_TOKEN` no repositório GitHub com uma credencial de publicação para `@solaria.network`. Para publicar manualmente, depois de versionar e autenticar a CLI:
 
 ```bash
 npm publish
