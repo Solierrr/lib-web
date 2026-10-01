@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/Solierrr/web-lib/compare/v0.2.0...v0.3.0) (2026-10-01)
+
+
+### Features
+
+* prepare shared npm component library release ([fac45ee](https://github.com/Solierrr/web-lib/commit/fac45ee0bb739fb9cc0d852a80cadde0c0f62a9b))
+
 ## [0.2.0](https://github.com/Solierrr/web-lib/compare/v0.1.0...v0.2.0) (2026-10-01)
 
 
