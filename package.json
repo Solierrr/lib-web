@@ -10,11 +10,11 @@
   "description": "Reusable React interfaces for Solierrr web applications.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Solierrr/lib-web.git"
+    "url": "https://github.com/Solierrr/web-lib.git"
   },
-  "homepage": "https://github.com/Solierrr/lib-web#readme",
+  "homepage": "https://github.com/Solierrr/web-lib#readme",
   "bugs": {
-    "url": "https://github.com/Solierrr/lib-web/issues"
+    "url": "https://github.com/Solierrr/web-lib/issues"
   },
   "keywords": [
     "solierrr",
