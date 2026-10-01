@@ -1,4 +1,4 @@
-# @solierrr/web-lib
+# @solaria.network/web-lib
 
 Biblioteca de interfaces React reutilizáveis para as aplicações web da Solierrr.
 
@@ -7,14 +7,14 @@ O pacote é escrito em TypeScript, distribui tipos e mantém React como `peerDep
 ## Instalação
 
 ```bash
-npm install @solierrr/web-lib
+npm install @solaria.network/web-lib
 ```
 
 ## Uso
 
 ```tsx
-import { Button } from '@solierrr/web-lib'
-import '@solierrr/web-lib/style.css'
+import { Button } from '@solaria.network/web-lib'
+import '@solaria.network/web-lib/style.css'
 
 export function SaveAction() {
   return <Button variant="primary">Salvar</Button>
@@ -50,4 +50,4 @@ O workflow `Publish npm package` publica automaticamente quando um GitHub Releas
 npm publish
 ```
 
-O `publishConfig` já define `access: public` e o escopo `@solierrr` usa o registro oficial do npm.
+O `publishConfig` já define `access: public` e o escopo `@solaria.network` usa o registro oficial do npm.
