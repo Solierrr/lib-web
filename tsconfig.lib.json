@@ -11,7 +11,9 @@
     "declarationMap": true,
     "declarationDir": "./dist",
     "rootDir": "./src",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
-  "include": ["src/components", "src/index.ts"]
+  "include": ["src/components", "src/index.ts", "src/email", "src/tokens", "src/shared", "src/locales"],
+  "exclude": ["src/**/*.stories.*", "src/**/*.test.*"]
 }

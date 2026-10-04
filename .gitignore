@@ -25,4 +25,7 @@ dist-ssr
 *.sw?
 
 *storybook.log
+src/tokens/theme.css
+src/assets/email-logo.png
+src/assets/email-canvas-*.png
 storybook-static
