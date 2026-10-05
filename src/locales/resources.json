@@ -1,0 +1,401 @@
+{
+  "pt-BR": {
+    "commons": {
+      "yes": "sim",
+      "no": "não",
+      "actions": {
+        "add": "adicionar",
+        "back": "voltar",
+        "cancel": "cancelar",
+        "close": "fechar",
+        "confirm": "confirmar",
+        "continue": "continuar",
+        "delete": "excluir",
+        "edit": "editar",
+        "next": "próximo",
+        "previous": "anterior",
+        "remove": "remover",
+        "save": "salvar",
+        "search": "pesquisar",
+        "send": "enviar",
+        "view": "Ver detalhes",
+        "contact": "entrar em contato"
+      },
+      "status": {
+        "loading": "carregando",
+        "success": "sucesso",
+        "error": "erro",
+        "active": "ativo",
+        "inactive": "inativo",
+        "available": "disponível",
+        "unavailable": "indisponível"
+      },
+      "select": {
+        "placeholder": "Selecione...",
+        "clearSelection": "Limpar seleção"
+      },
+      "pagination": {
+        "label": "Paginação",
+        "summary": "Exibindo {{start}}–{{end}} de {{total}}",
+        "first": "Primeira página",
+        "previous": "Página anterior",
+        "next": "Próxima página",
+        "last": "Última página",
+        "page": "Página {{page}}"
+      },
+      "registrationStatus": {
+        "pending": "Em análise",
+        "approved": "Aprovado",
+        "rejected": "Reprovado"
+      },
+      "operational": {
+        "actions": "Ações",
+        "confirmAction": "Confirmar \"{{action}}\" para {{name}}?",
+        "actionSuccess": "Ação concluída.",
+        "actionError": "Não foi possível concluir a ação.",
+        "empty": "Nenhum item para exibir."
+      },
+      "corridor": {
+        "viewAll": "acessar todas as peças"
+      }
+    },
+    "chat": {
+      "speech": {
+        "unsupported": "Ditado indisponível neste navegador.",
+        "listening": "Ouvindo… clique no microfone para parar.",
+        "denied": "Permita o acesso ao microfone para ditar.",
+        "start": "Ditar mensagem",
+        "stop": "Parar ditado",
+        "error": "Não foi possível iniciar o ditado. Tente novamente."
+      },
+      "attachments": {
+        "remove": "Remover {{name}}",
+        "image": "Imagem",
+        "rejected": "Selecione até 5 arquivos de até 20 MB: imagens, PDF, texto ou documentos do Office.",
+        "document": "Documento",
+        "add": "Adicionar anexo"
+      },
+      "composerInstructions": {
+        "newLine": "Nova linha",
+        "send": "Enviar"
+      },
+      "you": "Você"
+    },
+    "profile": {
+      "edit": {
+        "description": "Revise os dados do perfil antes de salvar.",
+        "mockNotice": "As alterações deste perfil ficam salvas somente neste navegador enquanto o fluxo real de edição não está conectado.",
+        "save": "Salvar alterações",
+        "saving": "Salvando...",
+        "cancel": "Cancelar",
+        "companyTitle": "Informações da empresa",
+        "personTitle": "Informações pessoais",
+        "professionalTitle": "Registro profissional",
+        "companyDetails": "Dados empresariais",
+        "contactDetails": "Contato comercial",
+        "addressDetails": "Localização",
+        "name": "Nome",
+        "tradeName": "Nome fantasia",
+        "corporateName": "Razão social",
+        "cnpj": "CNPJ",
+        "companyType": "Tipo de empresa",
+        "supplier": "Fornecedor",
+        "demandant": "Demandante",
+        "email": "E-mail",
+        "phone": "Telefone",
+        "website": "Site",
+        "street": "Rua e número",
+        "number": "Número",
+        "neighborhood": "Bairro",
+        "city": "Cidade",
+        "state": "Estado",
+        "zipCode": "CEP",
+        "country": "País",
+        "username": "Nome de usuário",
+        "profession": "Profissão",
+        "crea": "Registro profissional",
+        "council": "Conselho",
+        "registrationNumber": "Número de registro",
+        "expirationDate": "Validade do registro",
+        "notAvailable": "Não informado",
+        "companyReadOnly": "A edição empresarial ainda não está ligada a um endpoint da API. Em modo de mocks, as alterações ficam salvas localmente.",
+        "professionalReadOnly": "Os dados do registro profissional só podem ser editados no modo de mocks até a API disponibilizar o perfil próprio.",
+        "saveError": "Não foi possível salvar as alterações. Tente novamente."
+      }
+    },
+    "saas": {
+      "shell": {
+        "loading": "Carregando área operacional..."
+      },
+      "page": {
+        "tabs": "Seções da página"
+      }
+    }
+  },
+  "en-US": {
+    "commons": {
+      "yes": "yes",
+      "no": "no",
+      "actions": {
+        "add": "add",
+        "back": "back",
+        "cancel": "cancel",
+        "close": "close",
+        "confirm": "confirm",
+        "continue": "continue",
+        "delete": "delete",
+        "edit": "edit",
+        "next": "next",
+        "previous": "previous",
+        "remove": "remove",
+        "save": "save",
+        "search": "search",
+        "send": "send",
+        "view": "View details",
+        "contact": "contact"
+      },
+      "status": {
+        "loading": "loading",
+        "success": "success",
+        "error": "error",
+        "active": "active",
+        "inactive": "inactive",
+        "available": "available",
+        "unavailable": "unavailable"
+      },
+      "select": {
+        "placeholder": "Select...",
+        "clearSelection": "Clear selection"
+      },
+      "pagination": {
+        "label": "Pagination",
+        "summary": "Showing {{start}}–{{end}} of {{total}}",
+        "first": "First page",
+        "previous": "Previous page",
+        "next": "Next page",
+        "last": "Last page",
+        "page": "Page {{page}}"
+      },
+      "registrationStatus": {
+        "pending": "Under review",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "operational": {
+        "actions": "Actions",
+        "confirmAction": "Confirm \"{{action}}\" for {{name}}?",
+        "actionSuccess": "Action completed.",
+        "actionError": "Unable to complete the action.",
+        "empty": "No items to display."
+      },
+      "corridor": {
+        "viewAll": "view all items"
+      }
+    },
+    "chat": {
+      "speech": {
+        "unsupported": "Dictation is unavailable in this browser.",
+        "listening": "Listening… click the microphone to stop.",
+        "denied": "Allow microphone access to dictate.",
+        "start": "Dictate message",
+        "stop": "Stop dictation",
+        "error": "Could not start dictation. Try again."
+      },
+      "attachments": {
+        "remove": "Remove {{name}}",
+        "image": "Image",
+        "rejected": "Select up to 5 files of up to 20 MB: images, PDF, text or Office documents.",
+        "document": "Document",
+        "add": "Add attachment"
+      },
+      "composerInstructions": {
+        "newLine": "New line",
+        "send": "Send"
+      },
+      "you": "You"
+    },
+    "profile": {
+      "edit": {
+        "description": "Review the profile details before saving.",
+        "mockNotice": "These profile changes are stored only in this browser until the real editing flow is connected.",
+        "save": "Save changes",
+        "saving": "Saving...",
+        "cancel": "Cancel",
+        "companyTitle": "Company information",
+        "personTitle": "Personal information",
+        "professionalTitle": "Professional registration",
+        "companyDetails": "Business details",
+        "contactDetails": "Business contact",
+        "addressDetails": "Location",
+        "name": "Name",
+        "tradeName": "Trade name",
+        "corporateName": "Legal name",
+        "cnpj": "CNPJ",
+        "companyType": "Company type",
+        "supplier": "Supplier",
+        "demandant": "Demandant",
+        "email": "Email",
+        "phone": "Phone",
+        "website": "Website",
+        "street": "Street and number",
+        "number": "Number",
+        "neighborhood": "Neighborhood",
+        "city": "City",
+        "state": "State",
+        "zipCode": "ZIP code",
+        "country": "Country",
+        "username": "Username",
+        "profession": "Profession",
+        "crea": "Professional registration",
+        "council": "Council",
+        "registrationNumber": "Registration number",
+        "expirationDate": "Registration expiration",
+        "notAvailable": "Not provided",
+        "companyReadOnly": "Company editing is not connected to an API endpoint yet. In mock mode, changes are saved locally.",
+        "professionalReadOnly": "Professional registration details can only be edited in mock mode until the API provides a personal profile endpoint.",
+        "saveError": "The changes could not be saved. Try again."
+      }
+    },
+    "saas": {
+      "shell": {
+        "loading": "Loading workspace..."
+      },
+      "page": {
+        "tabs": "Page sections"
+      }
+    }
+  },
+  "es-ES": {
+    "commons": {
+      "yes": "sí",
+      "no": "no",
+      "actions": {
+        "add": "añadir",
+        "back": "volver",
+        "cancel": "cancelar",
+        "close": "cerrar",
+        "confirm": "confirmar",
+        "continue": "continuar",
+        "delete": "eliminar",
+        "edit": "editar",
+        "next": "siguiente",
+        "previous": "anterior",
+        "remove": "quitar",
+        "save": "guardar",
+        "search": "buscar",
+        "send": "enviar",
+        "view": "Ver detalles",
+        "contact": "contactar"
+      },
+      "status": {
+        "loading": "cargando",
+        "success": "éxito",
+        "error": "error",
+        "active": "activo",
+        "inactive": "inactivo",
+        "available": "disponible",
+        "unavailable": "no disponible"
+      },
+      "select": {
+        "placeholder": "Seleccionar...",
+        "clearSelection": "Limpiar selección"
+      },
+      "pagination": {
+        "label": "Paginación",
+        "summary": "Mostrando {{start}}–{{end}} de {{total}}",
+        "first": "Primera página",
+        "previous": "Página anterior",
+        "next": "Página siguiente",
+        "last": "Última página",
+        "page": "Página {{page}}"
+      },
+      "registrationStatus": {
+        "pending": "En análisis",
+        "approved": "Aprobado",
+        "rejected": "Rechazado"
+      },
+      "operational": {
+        "actions": "Acciones",
+        "confirmAction": "¿Confirmar \"{{action}}\" para {{name}}?",
+        "actionSuccess": "Acción completada.",
+        "actionError": "No se pudo completar la acción.",
+        "empty": "No hay elementos para mostrar."
+      },
+      "corridor": {
+        "viewAll": "acceder a todas las piezas"
+      }
+    },
+    "chat": {
+      "speech": {
+        "unsupported": "Dictado no disponible en este navegador.",
+        "listening": "Escuchando… pulsa el micrófono para detener.",
+        "denied": "Permite el acceso al micrófono para dictar.",
+        "start": "Dictar mensaje",
+        "stop": "Detener dictado",
+        "error": "No se pudo iniciar el dictado. Inténtalo de nuevo."
+      },
+      "attachments": {
+        "remove": "Eliminar {{name}}",
+        "image": "Imagen",
+        "rejected": "Selecciona hasta 5 archivos de hasta 20 MB: imágenes, PDF, texto o documentos de Office.",
+        "document": "Documento",
+        "add": "Añadir archivo"
+      },
+      "composerInstructions": {
+        "newLine": "Nueva línea",
+        "send": "Enviar"
+      },
+      "you": "Tú"
+    },
+    "profile": {
+      "edit": {
+        "description": "Revisa los datos del perfil antes de guardar.",
+        "mockNotice": "Estos cambios se guardan solo en este navegador hasta conectar el flujo real de edición.",
+        "save": "Guardar cambios",
+        "saving": "Guardando...",
+        "cancel": "Cancelar",
+        "companyTitle": "Información de la empresa",
+        "personTitle": "Información personal",
+        "professionalTitle": "Registro profesional",
+        "companyDetails": "Datos empresariales",
+        "contactDetails": "Contacto comercial",
+        "addressDetails": "Ubicación",
+        "name": "Nombre",
+        "tradeName": "Nombre comercial",
+        "corporateName": "Razón social",
+        "cnpj": "CNPJ",
+        "companyType": "Tipo de empresa",
+        "supplier": "Proveedor",
+        "demandant": "Demandante",
+        "email": "Correo electrónico",
+        "phone": "Teléfono",
+        "website": "Sitio web",
+        "street": "Calle y número",
+        "number": "Número",
+        "neighborhood": "Barrio",
+        "city": "Ciudad",
+        "state": "Estado",
+        "zipCode": "Código postal",
+        "country": "País",
+        "username": "Nombre de usuario",
+        "profession": "Profesión",
+        "crea": "Registro profesional",
+        "council": "Consejo",
+        "registrationNumber": "Número de registro",
+        "expirationDate": "Vencimiento del registro",
+        "notAvailable": "Sin información",
+        "companyReadOnly": "La edición empresarial aún no está conectada a un endpoint de API. En modo de mocks, los cambios se guardan localmente.",
+        "professionalReadOnly": "Los datos del registro profesional solo se pueden editar en modo de mocks hasta que la API ofrezca un perfil propio.",
+        "saveError": "No se pudieron guardar los cambios. Inténtalo de nuevo."
+      }
+    },
+    "saas": {
+      "shell": {
+        "loading": "Cargando área operativa..."
+      },
+      "page": {
+        "tabs": "Secciones de página"
+      }
+    }
+  }
+}
