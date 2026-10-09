@@ -72,7 +72,7 @@ logger.info('mensagem')
 logger.serviceError({ service: 'users', operation: 'list', status: 500, error })
 ```
 
-- `createLogger(source)` escreve no console como antes (`[INFO] [source] mensagem`). `VITE_LOGS` controla o modo: `debug`, `activated` ou `deactivated`.
+- `createLogger(source)` escreve no console como antes (`[INFO] [source] mensagem`). `VITE_LOGS` controla o modo (`debug`, `activated` ou `deactivated`, sem diferenciar maiúsculas).
 - Sem `endpoint`, só o console é usado. Com `endpoint` (o Collector, via OTLP/HTTP), os logs de nível `warn` e `error` (ajustável em `exportLevel`) vão para `/v1/logs`, em lote, e erros não tratados e rejeições são registrados.
 - O `fetch` é instrumentado: cada chamada para a mesma origem ou para um destino de `propagateTo` recebe o cabeçalho `traceparent` e gera um span de cliente em `/v1/traces`, o que liga o clique do usuário ao trace do backend. A URL do span não leva query string.
 - Mensagens e dados são limpos antes de sair: e-mail, CPF, CNPJ, JWT e `Bearer` viram `[redacted]`, e chaves como `password`, `token` e `authorization` também.

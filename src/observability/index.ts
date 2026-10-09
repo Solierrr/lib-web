@@ -8,7 +8,7 @@ export type ObservabilityOptions = {
   environment?: string
   endpoint?: string
   headers?: Record<string, string>
-  mode?: LogsMode
+  mode?: LogsMode | Uppercase<LogsMode> | (string & {})
   exportLevel?: LogLevel
   propagateTo?: PropagationTarget[]
   sampleRate?: number
@@ -19,10 +19,16 @@ export type Observability = {
   shutdown(): Promise<void>
 }
 
-export function initObservability(options: ObservabilityOptions): Observability {
-  configureLogger({ mode: options.mode ?? 'activated', exportLevel: options.exportLevel ?? 'warn' })
+function parseMode(value: string | undefined): LogsMode {
+  const mode = value?.toLowerCase()
+  return mode === 'debug' || mode === 'deactivated' ? mode : 'activated'
+}
 
-  if (!options.endpoint || options.mode === 'deactivated') {
+export function initObservability(options: ObservabilityOptions): Observability {
+  const mode = parseMode(options.mode)
+  configureLogger({ mode, exportLevel: options.exportLevel ?? 'warn' })
+
+  if (!options.endpoint || mode === 'deactivated') {
     return { shutdown: async () => undefined }
   }
 
