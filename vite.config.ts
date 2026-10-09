@@ -9,9 +9,13 @@ export default defineConfig({
   publicDir: false,
   build: {
     lib: {
-      entry: resolve(import.meta.dirname, 'src/index.ts'),
+      entry: {
+        index: resolve(import.meta.dirname, 'src/index.ts'),
+        observability: resolve(import.meta.dirname, 'src/observability/index.ts'),
+      },
       formats: ['es'],
-      fileName: 'index',
+      fileName: (_format, name) => `${name}.js`,
+      cssFileName: 'index',
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime', 'lucide-react'],
