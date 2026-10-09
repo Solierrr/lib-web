@@ -54,10 +54,10 @@ O `publishConfig` já define `access: public` e o escopo `@solaria.network` usa 
 
 ## Observabilidade
 
-A biblioteca traz o logger e a telemetria de navegador usados pelas aplicações `web-*`, em um só lugar. Os projetos importam, não copiam.
+A biblioteca traz o logger e a telemetria de navegador usados pelas aplicações `web-*`, em um só lugar. Os projetos importam, não copiam. Use o subcaminho `/observability`, que não carrega os estilos dos componentes.
 
 ```ts
-import { initObservability, createLogger } from '@solaria.network/web-lib'
+import { initObservability, createLogger } from '@solaria.network/web-lib/observability'
 
 initObservability({
   serviceName: 'web-app',
