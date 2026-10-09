@@ -16,5 +16,15 @@ export { ContextMenuProvider } from './components/overlay/contextMenu/provider/C
 export { useContextMenu } from './components/overlay/contextMenu/useContextMenu'
 export { Skeleton } from './components/feedback/skeleton/Skeleton'
 export type { SkeletonProps } from './components/feedback/skeleton/Skeleton'
+export { initObservability, logger, createLogger } from './observability'
+export type {
+  Logger,
+  LogLevel,
+  LogsMode,
+  Observability,
+  ObservabilityOptions,
+  PropagationTarget,
+  ServiceErrorContext,
+} from './observability'
 
 import './style.css'

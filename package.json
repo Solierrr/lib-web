@@ -46,6 +46,7 @@
     "dev": "vite",
     "build": "vite build && tsc -p tsconfig.lib.json",
     "lint": "eslint .",
+    "test": "node --import ./scripts/register-ts-resolve.mjs --test \"src/observability/**/*.test.ts\"",
     "typecheck": "tsc -p tsconfig.lib.json --noEmit",
     "pack:check": "npm pack --dry-run",
     "preview": "vite preview",

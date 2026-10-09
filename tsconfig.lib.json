@@ -13,5 +13,6 @@
     "rootDir": "./src",
     "skipLibCheck": true
   },
-  "include": ["src/components", "src/index.ts"]
+  "include": ["src/components", "src/observability", "src/index.ts"],
+  "exclude": ["src/**/*.test.ts"]
 }
