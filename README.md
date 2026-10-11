@@ -1,4 +1,6 @@
-# @solierrr/web-lib
+# @solaria.network/web-lib
+
+Os tokens Tailwind são distribuídos em `@solaria.network/web-lib/theme.css` (diretiva `@theme`) e como `tailwindTheme` em `@solaria.network/web-lib/tokens`. O layout de e-mail utiliza esse mesmo tema no componente Tailwind do React Email, que converte classes em estilos inline para envio. Templates dentro de EmailLayout podem usar as classes dos tokens sem importar o CSS de browser.
 
 Biblioteca de interfaces React reutilizáveis para as aplicações web da Solierrr.
 
@@ -7,27 +9,60 @@ O pacote é escrito em TypeScript, distribui tipos e mantém React como `peerDep
 ## Instalação
 
 ```bash
-npm install @solierrr/web-lib
+npm install @solaria.network/web-lib
 ```
 
 ## Uso
 
 ```tsx
-import { Button } from '@solierrr/web-lib'
-import '@solierrr/web-lib/style.css'
+import { PrimaryButton } from '@solaria.network/web-lib'
+import '@solaria.network/web-lib/style.css'
 
 export function SaveAction() {
-  return <Button variant="primary">Salvar</Button>
+  return <PrimaryButton content="Salvar" description="Salvar alterações" />
 }
 ```
 
-O pacote exporta `Button`, `Input`, `Textarea`, `Select`, `Icon`, `MenuList`, `MenuItem`, `ContextMenu`, `ContextMenuProvider`, `useContextMenu` e `Skeleton`. `lucide-react` precisa estar instalado junto ao React 19.
+O kit contém os controles atuais do web-app e seus presets: Button, ToolbarAction, Input (incluindo CEP/CNPJ/UF), Textarea, Select, Checkbox, Combobox, Hyperlink, Instructions, MessageComposer, Pagination, StatusField e Switcher. Inclui Menu/context menu, Confirmation/ConfirmedAction, Toast, Skeletons, RegistrationStatus, loaders, logo/copyright, Canvas/SideCanvas, OperationalPage/Table e FormSurface/FormSection.
+
+Para a entrada de browser, instale React 19.3, react-dom, lucide-react, react-icons, react-router-dom, react-i18next, i18next e react-speech-recognition. A navegação usa o Router do consumidor. Os componentes traduzidos usam seu I18nextProvider; `uiTranslations` fornece os recursos do kit em pt-BR/en-US/es-ES, sem iniciar tradução globalmente. Importe style.css para aplicar os tokens e estilos do kit.
+
+O web-app continua usando seus arquivos locais nesta etapa. SaaSLayout é um shell genérico configurável da biblioteca; sessão/autorização e páginas de negócio pertencem à aplicação. Os arquivos vazios de Alert/Tooltip não são anunciados como componentes implementados.
+
+Layouts genéricos também exportados: Access, Sidebar e seus itens, EntityCard/EntityCorridor, ChatLayout/ChatMessage, Footer e seções/formulário de edição de perfil. Chat recebe contratos estruturais locais com usuário id/name e mensagem/texto/data/anexos, sem importar modelos de domínio da aplicação.
+
+## E-mails
+
+Use `EmailLayout`, `EmailText` e `EmailAction` da entrada `@solaria.network/web-lib/email`, com React e react-email instalados. O layout recebe locale/title/footer/children; a ação recebe href/label/fallback. Essa entrada funciona no servidor sem carregar a raiz de browser ou style.css.
+
+Os componentes de e-mail usam estilos inline com valores resolvidos dos mesmos tokens do site. `src/tokens/tokens.json` é a fonte do tema; scripts/build-tokens.mjs gera o CSS. A entrada `@solaria.network/web-lib/tokens` exporta theme/designTokens sem carregar componentes. A fonte de e-mail usa Arial para compatibilidade. Não há hooks, canvas, menus, SVG ou CSS externo nos e-mails.
+
+Logo, título, mensagens, ações e rodapé ficam centralizados. O branding usa o SVG oficial src/assets/snowflake.svg como fonte; scripts/build-email-branding.mjs gera seu PNG transparente e as laterais estáticas do padrão Grid dos formulários. O build incorpora as imagens ao pacote. As laterais desaparecem em telas pequenas para preservar o espaço do conteúdo. Transporte Nodemailer deve configurar attachDataUrls=true para transformar essas imagens em partes CID incorporadas ao e-mail.
+
+## Teste local com api-email
+
+Na web-lib, sem publicar:
+
+```sh
+npm run build
+npm pack --pack-destination ../api-email/vendor
+```
+
+No api-email:
+
+```sh
+npm install ./vendor/solaria.network-web-lib-0.3.1.tgz
+npm run preview:seed
+```
+
+O tarball acompanha o consumidor para npm ci e Docker funcionarem sem uma pasta irmã. Ao editar o kit, gere o pacote novamente e reinstale-o no serviço; não existe leitura automática dos fontes da lib.
 
 ## Desenvolvimento
 
 ```bash
 npm install
 npm run build
+npm test
 npm run pack:check
 ```
 
