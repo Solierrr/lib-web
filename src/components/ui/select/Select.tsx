@@ -14,7 +14,7 @@ function getOptionValue<T>(option: SelectOption<T>): T {
   return typeof option === "string" ? (option as unknown as T) : option[1];
 }
 
-export interface SelectProps<T> {
+export interface SelectProps<T = string> {
   name: string;
   options: SelectOption<T>[];
   value?: T;
