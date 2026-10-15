@@ -14,6 +14,6 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["src/components", "src/index.ts", "src/email", "src/tokens", "src/shared", "src/locales"],
+  "include": ["src/components", "src/index.ts", "src/email", "src/tokens", "src/shared", "src/locales", "src/observability"],
   "exclude": ["src/**/*.stories.*", "src/**/*.test.*"]
 }
