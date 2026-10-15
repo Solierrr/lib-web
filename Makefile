@@ -3,7 +3,7 @@
 # Requer: make e sh (Git Bash no Windows). Para `make vault`: Infisical CLI e `infisical login`.
 
 # ---- especifico deste repositorio ----
-VAULT_FOLDERS ?=
+VAULT_FOLDERS ?= /vite
 INSTALL_CMD   ?= npm ci
 DEV_CMD       ?= npm run dev
 BUILD_CMD     ?= npm run build
