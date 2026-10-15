@@ -28,6 +28,9 @@ jobs:
       - name: Run unit tests
         run: npm test
 
+      - name: Test components
+        run: npm test
+
       - name: Build library
         run: npm run build
 

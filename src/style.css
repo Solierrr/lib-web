@@ -1,39 +1,260 @@
+@layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
+@import "tw-shimmer";
 
-@theme {
-  --color-white: #ffffff;
-  --color-gray: #797979;
-  --color-black: #444444;
-  --color-orange: #ff6500;
-  --color-green: #00aa57;
-  --color-hyperlink: #306eee;
-  --color-input-bg: #4444440d;
-  --color-input-text: #44444466;
-  --color-input-icon: #afafaf;
-  --color-input-outline: #44444426;
-  --color-skeleton: #4444441a;
-  --radius-small: 0.25rem;
-  --radius-soft: 0.35rem;
-  --radius-medium: 0.5rem;
-  --animate-fade-in: fade-in 150ms ease-out;
+::view-transition-group(switcher-selection) {
+  animation-duration: 250ms;
+  animation-timing-function: ease-in-out;
 }
 
-.solierrr-button {
-  min-height: 2.5rem;
-  padding: 0.5rem 1rem;
-  border: 0;
-  cursor: pointer;
-  font: inherit;
-  font-weight: 600;
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(switcher-selection) {
+    animation-duration: 0s;
+  }
 }
 
-.solierrr-button:focus-visible {
-  outline: 2px solid var(--color-hyperlink);
+@import "./tokens/theme.css";
+
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-optical-sizing: auto;
+    font-synthesis: none;
+    font-style: normal;
+    font-weight: var(--font-weight-medium);
+    @apply text-body text-black;
+  }
+
+  body { @apply overflow-x-hidden }
+
+  h1     { @apply text-title    font-bold       leading-9; }
+  h2     { @apply text-subtitle font-semi-bold  leading-7; }
+  h3, h4 { @apply text-label    font-medium     leading-6; }
+  h6, h5 { @apply text-body     font-medium     leading-6; }
+  p      { @apply font-medium  leading-6; }
+
+  ::-webkit-scrollbar             { @apply w-2 cursor-default!;      }
+  ::-webkit-scrollbar-track       { @apply bg-transparent;           }
+  ::-webkit-scrollbar-thumb       { @apply bg-orange rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-dark-orange;         }
+
+  html, body {
+    scrollbar-gutter: stable;
+  }
+
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+  }
+
+  html:hover::-webkit-scrollbar-thumb,
+  body:hover::-webkit-scrollbar-thumb,
+  html.scroll-active::-webkit-scrollbar-thumb,
+  body.scroll-active::-webkit-scrollbar-thumb {
+    opacity: 1;
+  }
+
+  ::selection, mark { @apply bg-orange-500 text-white; }
+  :focus-visible { @apply outline-[0.155rem] outline-offset-[0.165rem] rounded-md outline-input-outline;}
+}
+
+@utility no-leading {
+  line-height: 1;
+  padding-bottom: 1px;
+}
+
+@utility navbar-frame {
+  @apply flex h-16 shrink-0 items-center bg-white px-4 py-3.5 sm:px-8;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.ai-orange-gradient stop:nth-child(1) { stop-color: var(--color-orange-gold); }
+.ai-orange-gradient stop:nth-child(2) { stop-color: var(--color-orange-apricot); }
+.ai-orange-gradient stop:nth-child(3) { stop-color: var(--color-orange); }
+.ai-orange-gradient stop:nth-child(4) { stop-color: var(--color-orange-coral); }
+.ai-orange-gradient stop:nth-child(5) { stop-color: var(--color-orange-copper); }
+
+@utility bg-interactive {
+  @apply bg-black/8;
+}
+
+@utility bg-interactive-pseudo {
+  @apply bg-interactive hover:bg-black/14 active:bg-black/20 transition duration-350
+}
+
+@utility border-ui {
+  border: var(--border-width-ui) solid var(--color-border);
+}
+
+@utility shadow-soft-* {
+  box-shadow: 0 0.125rem 0.5rem 0 color-mix(in srgb, --value(--color-*) 12%, transparent);
+}
+
+@utility shadow-medium-* {
+  box-shadow: 0 0.125rem 0.5rem 0 color-mix(in srgb, --value(--color-*) 12%, transparent);
+  &:hover {
+    box-shadow: 0 0.2rem 1rem 0.3rem color-mix(in srgb, --value(--color-*) 20%, transparent);
+  };
+  @apply transition-shadow duration-400;
+}
+
+@utility aspect-button-* {
+  background: linear-gradient(to top, --value(--color-*), color-mix(in srgb, --value(--color-*) 80%, var(--color-white)));
+  box-shadow:
+    inset 0 0.1rem 0.2rem 0 color-mix(in srgb, --value(--color-*) 50%, var(--color-white)),
+    inset 0 -0.2rem 0.8rem 0 color-mix(in srgb, --value(--color-*) 60%, var(--color-black)) !important;
+  border-color: color-mix(in srgb, --value(--color-*) 85%, var(--color-black));
+  @apply relative rounded-medium *:font-semi-bold! text-white border-2 cursor-pointer after:opacity-0 after:transition-opacity after:duration-150;
+  &::after {
+    content: "";
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.05) 60%, transparent 100%);
+    background-size: 200% 100%;
+    @apply absolute inset-0 size-full rounded-[inherit] pointer-events-none opacity-0;
+  };
+  &:hover::after {
+    @apply opacity-20;
+  };
+}
+
+@utility aspect-button-neutral {
+  background-image: linear-gradient(to top, color-mix(in srgb, var(--color-white) 94%, var(--color-gray)), var(--color-white)) !important;
+}
+
+* {
+  font-family: var(--font-ui);
+}
+
+.input-scrollbar::-webkit-scrollbar-thumb       { @apply bg-input-outline rounded-full; }
+.input-scrollbar::-webkit-scrollbar-thumb:hover { @apply bg-input-text; }
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes operational-progress {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(300%); }
+}
+
+@layer components {
+  .operational-shell {
+    @apply text-operational-ink;
+  }
+  .operational-page :is(input, select, textarea) {
+    @apply min-w-0 max-w-full rounded-small border-operational-border;
+  }
+  .operational-page :is(h2, h3) {
+    @apply text-label font-semi-bold;
+  }
+}
+
+.toolbar-action,
+.toolbar-action * {
+  font-family: var(--font-ui);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: var(--leading-toolbar);
+  letter-spacing: var(--tracking-toolbar);
+}
+
+@keyframes toast-enter {
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.toast-enter {
+  animation: toast-enter 250ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-enter { animation: none; }
+}
+
+.form-corners {
+  mask-image: radial-gradient(ellipse 20rem 16rem at top left, black, transparent), radial-gradient(ellipse 20rem 16rem at bottom right, black, transparent);
+  opacity: 0.85;
+}
+
+.operational-form {
+  gap: 1.5rem;
+}
+
+.operational-form label:not(:has(input[type="checkbox"])) {
+  min-width: 0;
+  gap: 0.5rem;
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-medium);
+}
+
+.operational-form label > div:has(input),
+.operational-form label > div:has(textarea) {
+  width: 100%;
+  border: 1px solid var(--color-operational-border);
+}
+
+.operational-form label > div:focus-within {
+  outline: 2px solid var(--color-operational-ink);
   outline-offset: 2px;
 }
 
-@keyframes fade-in {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+.operational-form > h2 {
+  border-bottom: 1px solid var(--color-operational-border);
+  padding-bottom: 0.75rem;
+  font-size: 1rem;
 }
+
+@media (max-width: 639px) {
+  .operational-form .grid-cols-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .operational-form .col-span-2 {
+    grid-column: auto;
+  }
+  .form-corners {
+    opacity: 0.2;
+  }
+}
+
+.operational-form-login {
+  gap: 1rem;
+}
+
+.operational-form-login label > div:has(input),
+.operational-form-login label > div:has(textarea) {
+  min-height: 3rem;
+  border: 0;
+}
+
+.operational-form-login label > div > [role="button"] {
+  min-height: 3rem;
+}
+
+input:not([type="checkbox"]):not([type="radio"]) {
+  appearance: none;
+  outline: none;
+  box-shadow: none;
+}
+.operational-form-login label > div:focus-within { outline: none; }
+.form-section-body { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; transition: grid-template-rows 300ms ease, opacity 200ms ease, visibility 300ms; }
+.form-section-body.is-expanded { grid-template-rows: 1fr; opacity: 1; visibility: visible; }
+@media (prefers-reduced-motion: reduce) { .form-section-body { transition: none; } }

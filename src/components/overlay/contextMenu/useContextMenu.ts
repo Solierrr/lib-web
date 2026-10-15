@@ -1,10 +1,10 @@
-import { useContext } from 'react'
-import { ContextMenuContext, type ContextMenuContextValue } from './context'
+import { useContext } from "react";
+import { ContextMenuContext, type ContextMenuContextValue } from "./ContextMenuContext.js";
+
 
 export function useContextMenu(): ContextMenuContextValue {
-  const context = useContext(ContextMenuContext)
-  if (!context) throw new Error('useContextMenu must be used within a ContextMenuProvider')
-  return context
-}
+  const context = useContext(ContextMenuContext);
+  if (!context) throw new Error("useContextMenu: deve ser usado dentro de um ContextMenuProvider.");
 
-export default useContextMenu
+  return context;
+}
