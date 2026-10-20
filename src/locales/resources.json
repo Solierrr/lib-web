@@ -57,6 +57,9 @@
       },
       "corridor": {
         "viewAll": "acessar todas as peças"
+      },
+      "logo": {
+        "changeShape": "Mudar a forma da logo"
       }
     },
     "chat": {
@@ -130,6 +133,25 @@
       "page": {
         "tabs": "Seções da página"
       }
+    },
+    "access": {
+      "feedback": {
+        "required": "Preencha este campo.",
+        "invalidEmail": "Informe um e-mail válido.",
+        "minLength": "Use pelo menos {{count}} caracteres.",
+        "unavailable": "O serviço de acesso está temporariamente indisponível. Tente novamente mais tarde.",
+        "connection": "Não foi possível conectar ao serviço. Verifique sua conexão e tente novamente.",
+        "tooManyAttempts": "Muitas tentativas em pouco tempo. Aguarde um momento antes de tentar novamente.",
+        "popupBlocked": "Permita a abertura da janela de acesso no navegador e tente novamente.",
+        "cancelled": "O acesso foi cancelado. Você pode tentar novamente quando quiser.",
+        "providerUnavailable": "Este método de acesso está indisponível no momento. Use e-mail e senha ou tente mais tarde.",
+        "providerFailed": "Não foi possível concluir o acesso com esse provedor. Tente novamente.",
+        "signInFailed": "Não foi possível entrar. Tente novamente.",
+        "invalidLink": "Este link é inválido, expirou ou já foi utilizado. Solicite um novo link.",
+        "emailUnavailable": "O envio de e-mail está indisponível. Tente novamente mais tarde.",
+        "passwordPolicy": "Use uma senha com pelo menos 12 caracteres. Se ela for muito longa, reduza o tamanho.",
+        "requiredHelp": "Preencha todos os campos obrigatórios para continuar."
+      }
     }
   },
   "en-US": {
@@ -190,6 +212,9 @@
       },
       "corridor": {
         "viewAll": "view all items"
+      },
+      "logo": {
+        "changeShape": "Change the logo shape"
       }
     },
     "chat": {
@@ -263,6 +288,25 @@
       "page": {
         "tabs": "Page sections"
       }
+    },
+    "access": {
+      "feedback": {
+        "required": "Fill in this field.",
+        "invalidEmail": "Enter a valid email address.",
+        "minLength": "Use at least {{count}} characters.",
+        "unavailable": "The sign-in service is temporarily unavailable. Please try again later.",
+        "connection": "Could not connect to the service. Check your connection and try again.",
+        "tooManyAttempts": "Too many attempts. Wait a moment before trying again.",
+        "popupBlocked": "Allow the sign-in popup in your browser and try again.",
+        "cancelled": "Sign-in was cancelled. You can try again whenever you are ready.",
+        "providerUnavailable": "This sign-in method is currently unavailable. Use email and password or try again later.",
+        "providerFailed": "Could not complete sign-in with this provider. Please try again.",
+        "signInFailed": "Could not sign in. Please try again.",
+        "invalidLink": "This link is invalid, expired or already used. Request a new link.",
+        "emailUnavailable": "Email delivery is unavailable. Please try again later.",
+        "passwordPolicy": "Use a password with at least 12 characters. If it is too long, shorten it.",
+        "requiredHelp": "Fill in all required fields to continue."
+      }
     }
   },
   "es-ES": {
@@ -323,6 +367,9 @@
       },
       "corridor": {
         "viewAll": "acceder a todas las piezas"
+      },
+      "logo": {
+        "changeShape": "Cambiar la forma del logo"
       }
     },
     "chat": {
@@ -395,6 +442,25 @@
       },
       "page": {
         "tabs": "Secciones de página"
+      }
+    },
+    "access": {
+      "feedback": {
+        "required": "Completa este campo.",
+        "invalidEmail": "Introduce un correo electrónico válido.",
+        "minLength": "Usa al menos {{count}} caracteres.",
+        "unavailable": "El servicio de acceso no está disponible temporalmente. Inténtalo más tarde.",
+        "connection": "No se pudo conectar con el servicio. Revisa tu conexión e inténtalo de nuevo.",
+        "tooManyAttempts": "Demasiados intentos. Espera un momento antes de volver a intentarlo.",
+        "popupBlocked": "Permite la ventana de acceso en el navegador e inténtalo de nuevo.",
+        "cancelled": "Se canceló el acceso. Puedes volver a intentarlo cuando quieras.",
+        "providerUnavailable": "Este método de acceso no está disponible. Usa correo y contraseña o inténtalo más tarde.",
+        "providerFailed": "No se pudo completar el acceso con este proveedor. Inténtalo de nuevo.",
+        "signInFailed": "No se pudo iniciar sesión. Inténtalo de nuevo.",
+        "invalidLink": "Este enlace no es válido, ha caducado o ya se utilizó. Solicita uno nuevo.",
+        "emailUnavailable": "El envío de correo no está disponible. Inténtalo más tarde.",
+        "passwordPolicy": "Usa una contraseña de al menos 12 caracteres. Si es demasiado larga, acórtala.",
+        "requiredHelp": "Completa todos los campos obligatorios para continuar."
       }
     }
   }
