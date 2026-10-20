@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/Solierrr/lib-web/compare/v0.4.0...v0.5.0) (2026-10-20)
+
+
+### Features
+
+* share updated access layout and organic branding ([#18](https://github.com/Solierrr/lib-web/issues/18)) ([be4ff5d](https://github.com/Solierrr/lib-web/commit/be4ff5d878da92527681923eb5159b889dd059bc))
+
 ## [0.4.0](https://github.com/Solierrr/lib-web/compare/v0.3.1...v0.4.0) (2026-10-15)
 
 
