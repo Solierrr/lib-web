@@ -258,3 +258,20 @@ input:not([type="checkbox"]):not([type="radio"]) {
 .form-section-body { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; transition: grid-template-rows 300ms ease, opacity 200ms ease, visibility 300ms; }
 .form-section-body.is-expanded { grid-template-rows: 1fr; opacity: 1; visibility: visible; }
 @media (prefers-reduced-motion: reduce) { .form-section-body { transition: none; } }
+
+@utility button-soft {
+  background-image: linear-gradient(177deg, var(--button-highlight, var(--color-action-highlight)) 0%, var(--button-base, var(--color-action-base)) 100%);
+  @apply shadow-button-soft;
+}
+
+@utility button-soft-neutral {
+  --button-highlight: var(--color-white);
+  --button-base: var(--color-operational-surface);
+  --button-depth: 0.5;
+}
+
+@utility button-soft-surface {
+  --button-highlight: var(--color-operational-surface);
+  --button-base: var(--color-operational-surface);
+  @apply shadow-none;
+}

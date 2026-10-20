@@ -70,3 +70,6 @@ export * from "./observability/index.js"
 import "./style.css"
 export { default as SaaSLayout } from './components/layout/saas/SaaSLayout.js'
 export type { SaaSLayoutProps, SaaSNavigationGroup, SaaSNavigationItem } from './components/layout/saas/SaaSLayout.js'
+
+export { default as OrganicLogo } from "./components/brand/logo/OrganicLogo.js";
+export { default as Surface } from "./components/ui/surface/Surface.js";
