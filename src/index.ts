@@ -25,8 +25,8 @@ export { default as Canvas } from "./components/layout/access/canvas/Canvas.js"
 export { default as SideCanvas } from "./components/layout/access/canvas/SideCanvas.js"
 export { default as OperationalPage } from "./components/layout/operational-page/OperationalPage.js"
 export { default as OperationalTable } from "./components/layout/operational-page/OperationalTable.js"
-export { default as Access } from "./components/layout/access/Access.js"
-export type { AccessField, AccessProps } from "./components/layout/access/Access.js"
+export { default as Access, AccessShell } from "./components/layout/access/Access.js"
+export type { AccessField, AccessProps, AccessShellProps } from "./components/layout/access/Access.js"
 export { default as EntityCard } from "./components/layout/announcement/entity-card/EntityCard.js"
 export type { EntityCardItem, EntityCardProps } from "./components/layout/announcement/entity-card/EntityCard.js"
 export { default as EntityCorridor } from "./components/layout/announcement/corridor/EntityCorridor.js"
@@ -73,3 +73,11 @@ export type { SaaSLayoutProps, SaaSNavigationGroup, SaaSNavigationItem } from '.
 
 export { default as OrganicLogo } from "./components/brand/logo/OrganicLogo.js";
 export { default as Surface } from "./components/ui/surface/Surface.js";
+export { SpringIcon, ReactIcon, LangChainIcon, GitHubIcon, SwaggerIcon, StorybookIcon, FastAPIIcon, PythonIcon, KotlinIcon, JavaIcon, TypeScriptIcon, TerraformIcon, AndroidIcon } from "./components/brand/stack-icons/StackIcons.js"
+export type { StackIconProps } from "./components/brand/stack-icons/StackIcons.js"
+export { default as LinkShare } from "./components/ui/link-share/LinkShare.js"
+export type { LinkShareLabels, LinkShareProps } from "./components/ui/link-share/LinkShare.js"
+export { default as ServiceList } from "./components/layout/catalog/ServiceList.js"
+export type { ServiceListProps, ServiceListItem, ServiceListLink } from "./components/layout/catalog/ServiceList.js"
+export { default as SurfaceGroup } from "./components/ui/surface/SurfaceGroup.js"
+export { default as GroupAction } from "./components/ui/button/GroupAction.js"
