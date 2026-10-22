@@ -4,6 +4,8 @@ import Icon, { type IconName } from "../icon/Icon.js";
 
 type ToolbarActionProps = {
   icon?: IconName;
+  iconSize?: number;
+  iconMotion?: "folder" | "account";
   label: string;
   content?: string;
   iconGradient?: "orange";
@@ -16,6 +18,8 @@ type ToolbarActionProps = {
 
 export default function ToolbarAction({
   icon,
+  iconSize = 20,
+  iconMotion,
   label,
   content,
   iconGradient,
@@ -38,7 +42,16 @@ export default function ToolbarAction({
   } as CSSProperties;
   const children = (
     <>
-      {icon && <Icon name={icon} size={20} color="currentColor" gradient={iconGradient} className="shrink-0 text-inherit [&_*]:text-inherit" />}
+      {icon && (
+        <Icon
+          name={icon}
+          motion={iconMotion}
+          size={iconSize}
+          color="currentColor"
+          gradient={iconGradient}
+          className="shrink-0 text-inherit [&_*]:text-inherit"
+        />
+      )}
       {content && <span className={`text-body text-inherit ${hideContentOnMobile ? "hidden sm:inline" : ""}`}>{content}</span>}
     </>
   );

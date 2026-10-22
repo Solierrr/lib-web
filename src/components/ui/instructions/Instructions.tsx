@@ -1,4 +1,4 @@
-export interface InstructionsProps {
+interface InstructionsProps {
   items: string[];
   className?: string;
 }

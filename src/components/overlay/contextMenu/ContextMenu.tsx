@@ -16,7 +16,7 @@ export interface ContextMenuHandle {
   close: () => void;
 }
 
-export interface ContextMenuProps {
+interface ContextMenuProps {
   className?: string;
   header?: ReactNode;
   id?: string;
@@ -25,6 +25,7 @@ export interface ContextMenuProps {
   autoFocus?: boolean;
   triggerRef?: RefObject<HTMLElement | null>;
   align?: "start" | "end";
+  portalWithinDialog?: boolean;
 }
 
 interface Position {
@@ -32,11 +33,26 @@ interface Position {
   y: number;
 }
 
-
+/**
+ * ContextMenu
+ *
+ * Menu de contexto customizado, aberto de forma imperativa via `ref` (ex.: a
+ * partir de um `onContextMenu` ou do clique num botão "⋮"), em vez de embrulhar
+ * um trigger fixo. Os itens são passados a cada chamada de `open`, então uma
+ * única instância pode ser reaproveitada por qualquer trigger (ver
+ * `ContextMenuProvider` para uma instância global compartilhada). Renderizado
+ * em portal (`document.body`) para não ser cortado por containers com
+ * `overflow-hidden`, e reposicionado para não ultrapassar a viewport.
+ *
+ * @param props - Propriedades do componente.
+ *
+ * @returns O componente de menu de contexto renderizado (via portal).
+ */
 export const ContextMenu = forwardRef<ContextMenuHandle, ContextMenuProps>(function ContextMenu(
-  { className, header, id, label, onClose, autoFocus = false, triggerRef, align = "start" },
+  { className, header, id, label, onClose, autoFocus = false, triggerRef, align = "start", portalWithinDialog = false },
   ref,
 ) {
+  const [portalRoot, setPortalRoot] = useState<Element | null>(null);
   const [position, setPosition] = useState<Position | null>(null);
   const [items, setItems] = useState<ContextMenuItem[]>([]);
   const menuRef = useRef<HTMLUListElement>(null);
@@ -45,6 +61,7 @@ export const ContextMenu = forwardRef<ContextMenuHandle, ContextMenuProps>(funct
     ref,
     () => ({
       open: (items, x, y) => {
+        setPortalRoot(portalWithinDialog ? (triggerRef?.current?.closest('[role="dialog"]') ?? null) : null);
         setItems(items);
         setPosition({ x, y });
       },
@@ -53,7 +70,7 @@ export const ContextMenu = forwardRef<ContextMenuHandle, ContextMenuProps>(funct
         onClose?.();
       },
     }),
-    [onClose],
+    [onClose, portalWithinDialog, triggerRef],
   );
 
   useEffect(() => {
@@ -84,16 +101,44 @@ export const ContextMenu = forwardRef<ContextMenuHandle, ContextMenuProps>(funct
   useLayoutEffect(() => {
     if (!position || !menuRef.current) return;
 
-    const { innerWidth, innerHeight } = window;
-    const { width, height } = menuRef.current.getBoundingClientRect();
-
-    const x = Math.min(align === "end" ? position.x - width : position.x, innerWidth - width);
-    const y = Math.min(position.y, innerHeight - height);
-
-    menuRef.current.style.left = `${Math.max(x, 0)}px`;
-    menuRef.current.style.top = `${Math.max(y, 0)}px`;
-    if (autoFocus) menuRef.current.querySelector<HTMLElement>('[role="menuitem"]:not([aria-disabled="true"])')?.focus();
-  }, [position, autoFocus, align]);
+    const menu = menuRef.current;
+    function updatePosition() {
+      const viewport = window.visualViewport;
+      const left = (viewport?.offsetLeft ?? 0) + 8;
+      const top = (viewport?.offsetTop ?? 0) + 8;
+      const right = left + (viewport?.width ?? window.innerWidth) - 16;
+      const bottom = top + (viewport?.height ?? window.innerHeight) - 16;
+      menu.style.minWidth = `${Math.min(160, Math.max(0, right - left))}px`;
+      menu.style.maxWidth = `${Math.max(0, right - left)}px`;
+      const anchor = triggerRef?.current?.getBoundingClientRect();
+      const below = Math.max(top, Math.min(anchor ? anchor.bottom + 8 : position!.y, bottom));
+      const above = Math.max(top, Math.min(anchor ? anchor.top - 8 : position!.y, bottom));
+      const belowSpace = Math.max(0, bottom - below);
+      const aboveSpace = Math.max(0, above - top);
+      const upwards = menu.scrollHeight > belowSpace && aboveSpace > belowSpace;
+      menu.style.maxHeight = `${upwards ? aboveSpace : belowSpace}px`;
+      const { width, height } = menu.getBoundingClientRect();
+      const anchorX = anchor ? (align === "end" ? anchor.right : anchor.left) : position!.x;
+      const x = align === "end" ? anchorX - width : anchorX;
+      menu.style.left = `${Math.max(left, Math.min(x, right - width))}px`;
+      menu.style.top = `${Math.max(top, Math.min(upwards ? above - height : below, bottom - height))}px`;
+    }
+    updatePosition();
+    if (autoFocus) menu.querySelector<HTMLElement>('[role="menuitem"]:not([aria-disabled="true"])')?.focus({ preventScroll: true });
+    const observer = typeof ResizeObserver === "undefined" ? undefined : new ResizeObserver(updatePosition);
+    observer?.observe(menu);
+    window.addEventListener("resize", updatePosition);
+    window.addEventListener("scroll", updatePosition, true);
+    window.visualViewport?.addEventListener("resize", updatePosition);
+    window.visualViewport?.addEventListener("scroll", updatePosition);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("scroll", updatePosition, true);
+      window.visualViewport?.removeEventListener("resize", updatePosition);
+      window.visualViewport?.removeEventListener("scroll", updatePosition);
+    };
+  }, [position, autoFocus, align, triggerRef]);
 
   function handleSelect(item: ContextMenuItem) {
     item.onClick();
@@ -134,7 +179,7 @@ export const ContextMenu = forwardRef<ContextMenuHandle, ContextMenuProps>(funct
         }
       }}
       className={`fixed z-50 min-w-40 py-1 animate-fade-in ${className ?? ""}`}
-      style={{ left: position.x, top: position.y }}>
+      style={{ left: position.x, top: position.y, overflowY: "auto", overflowWrap: "anywhere" }}>
       {header && (
         <li role="presentation" className="px-4 py-3">
           {header}
@@ -147,6 +192,6 @@ export const ContextMenu = forwardRef<ContextMenuHandle, ContextMenuProps>(funct
         </MenuItem>
       ))}
     </MenuList>,
-    document.body,
+    portalRoot ?? document.body,
   );
 });

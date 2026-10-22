@@ -1,8 +1,9 @@
 import Icon, { type IconName } from "../icon/Icon.js";
 
-export type StatusFieldState = "approved" | "rejected" | "pending";
+export type StatusFieldState = "approved" | "rejected" | "pending" | "cancelled";
 
 const STATES: Record<StatusFieldState, { icon: IconName; color: string; classes: string }> = {
+  cancelled: { icon: "x", color: "var(--color-operational-muted)", classes: "bg-operational-hover text-operational-muted" },
   approved: { icon: "check", color: "var(--color-green)", classes: "bg-green/10 text-green" },
   rejected: { icon: "x", color: "var(--color-orange-copper)", classes: "bg-orange-copper/10 text-orange-copper" },
   pending: { icon: "clock", color: "var(--color-operational-muted)", classes: "bg-operational-hover text-operational-muted" },

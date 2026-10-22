@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { HyperlinkUrlType } from "./Hyperlink.enum.js";
 
-export interface HyperlinkProps {
+interface HyperlinkProps {
   content: string;
   url: string;
   type?: HyperlinkUrlType;

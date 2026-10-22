@@ -2,21 +2,29 @@ import { useId, useState } from "react";
 import Input from "../input/Input.js";
 import { MenuItem, MenuList } from "../../overlay/Menu.js";
 
-export interface Props {
-  name: string;
-  label: string;
-  value: string;
-  options: readonly (readonly [string, string])[];
-  onChange: (value: string) => void;
-  emptyLabel: string;
-  required?: boolean;
-  placeholder?: string;
-  maxLength?: number;
-  normalize?: (value: string) => string;
-}
+import type { ComboboxProps } from "./Combobox.types.js";
 
-export default function Combobox({ name, label, value, options, onChange, emptyLabel, required, placeholder, maxLength, normalize }: Props) {
+export default function Combobox({
+  name,
+  label,
+  value,
+  options,
+  onChange,
+  emptyLabel,
+  required,
+  placeholder,
+  maxLength,
+  normalize,
+  selectionLabel = false,
+  toggleLabel,
+  disabled,
+  invalid,
+  errorId,
+}: ComboboxProps) {
   const id = useId();
+  const [query, setQuery] = useState<string | null>(null);
+  const selectedLabel = options.find(([, code]) => code === value)?.[0] ?? "";
+  const search = selectionLabel ? (query ?? "") : value;
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const normalizeSearch = (text: string) =>
@@ -24,11 +32,12 @@ export default function Combobox({ name, label, value, options, onChange, emptyL
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
-  const matches = options.some(([, code]) => code === value)
+  const matches = (selectionLabel ? query === null : options.some(([, code]) => code === value))
     ? options
-    : options.filter(([text, code]) => normalizeSearch(`${code} ${text}`).includes(normalizeSearch(value)));
+    : options.filter(([text, code]) => normalizeSearch(`${code} ${text}`).includes(normalizeSearch(search)));
   const currentIndex = Math.min(active, matches.length - 1);
   const select = (code: string) => {
+    setQuery(null);
     onChange(code);
     setOpen(false);
   };
@@ -36,10 +45,15 @@ export default function Combobox({ name, label, value, options, onChange, emptyL
     <div
       className="relative w-full"
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setOpen(false);
+          setQuery(null);
+        }
       }}>
       <Input
         name={name}
+        aria-invalid={invalid}
+        aria-describedby={errorId}
         placeholder={placeholder}
         maxLength={maxLength}
         aria-label={label}
@@ -48,15 +62,16 @@ export default function Combobox({ name, label, value, options, onChange, emptyL
         aria-controls={id}
         aria-autocomplete="list"
         aria-activedescendant={open && currentIndex >= 0 ? `${id}-${currentIndex}` : undefined}
-        value={value}
+        value={selectionLabel ? (query ?? selectedLabel) : value}
+        disabled={disabled}
         required={required}
-        pattern={options.map(([, code]) => code).join("|")}
+        pattern={selectionLabel ? undefined : options.map(([, code]) => code).join("|")}
         autoComplete="off"
         spellCheck={false}
-        className="w-full"
+        className={`w-full [&_svg]:transition-transform [&_svg]:duration-300 motion-reduce:[&_svg]:transition-none ${open ? "[&_svg]:rotate-180" : ""}`}
         icon={{
           name: "chevronDown",
-          label,
+          label: toggleLabel ?? label,
           onClick: () => {
             setOpen(!open);
             setActive(
@@ -67,6 +82,7 @@ export default function Combobox({ name, label, value, options, onChange, emptyL
             );
           },
         }}
+        onClick={() => setOpen(true)}
         onFocus={() => {
           setOpen(true);
           setActive(
@@ -77,9 +93,12 @@ export default function Combobox({ name, label, value, options, onChange, emptyL
           );
         }}
         onChange={(event) => {
-          const value = normalize ? normalize(event.target.value) : event.target.value.toUpperCase();
+          const value = selectionLabel ? event.target.value : normalize ? normalize(event.target.value) : event.target.value.toUpperCase();
           event.currentTarget.value = value;
-          onChange(value);
+          if (selectionLabel) {
+            setQuery(value);
+            onChange("");
+          } else onChange(value);
           setActive(
             Math.max(
               0,

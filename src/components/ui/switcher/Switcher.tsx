@@ -2,7 +2,7 @@ import type { RedirectOption } from "../../../shared/types/navigation.js";
 import { flushSync } from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 
-export interface SwitcherProps {
+interface SwitcherProps {
   options: RedirectOption[];
   activeUrl: string;
   label: string;

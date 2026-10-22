@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 
 export type RegistrationStatusKind = "PENDING" | "APPROVED" | "REJECTED";
 
-export interface RegistrationStatusProps {
+interface RegistrationStatusProps {
   status: RegistrationStatusKind;
   reason?: string;
 }

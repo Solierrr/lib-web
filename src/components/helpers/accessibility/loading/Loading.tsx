@@ -1,6 +1,6 @@
 import LogoLoader from "../../../feedback/logo-loader/LogoLoader.js";
 
-export interface LoadingProps {
+interface LoadingProps {
   label?: string;
   className?: string;
 }

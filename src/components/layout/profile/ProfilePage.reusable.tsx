@@ -1,10 +1,11 @@
+import FormError from "../../feedback/toast/FormError.js";
 import OperationalForm from "../operational-page/OperationalForm.js";
 import { useState, type FormEvent, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import Input from "../../ui/input/Input.js";
 import { PrimaryButton, WhiteButton } from "../../ui/button/Button.presets.js";
 
-export interface ProfileInfoSectionProps {
+interface ProfileInfoSectionProps {
   title: string;
   description?: string;
   children: ReactNode;
@@ -12,17 +13,17 @@ export interface ProfileInfoSectionProps {
 
 export function ProfileInfoSection({ title, description, children }: ProfileInfoSectionProps) {
   return (
-    <section className="rounded-hard border border-black/5 bg-white p-5 sm:p-7">
-      <div className="mb-5 flex flex-col gap-1 border-b border-black/8 pb-4">
+    <section className="rounded-surface border-ui bg-white shadow-surface p-5 sm:p-7">
+      <div className="mb-5 flex flex-col gap-1 border-b border-operational-border pb-4">
         <h2 className="text-label">{title}</h2>
-        {description && <p className="text-body text-black/55">{description}</p>}
+        {description && <p className="text-body text-operational-muted">{description}</p>}
       </div>
       {children}
     </section>
   );
 }
 
-export interface ProfileInfoRowProps {
+interface ProfileInfoRowProps {
   label: string;
   value?: string | null;
 }
@@ -32,8 +33,8 @@ export function ProfileInfoRow({ label, value }: ProfileInfoRowProps) {
 
   return (
     <div className="grid gap-1 py-2 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-4">
-      <dt className="text-body font-medium text-black/50">{label}</dt>
-      <dd className="break-words text-body font-medium text-black/80">{value}</dd>
+      <dt className="text-body font-medium text-operational-muted">{label}</dt>
+      <dd className="break-words text-body font-medium text-operational-ink">{value}</dd>
     </div>
   );
 }
@@ -49,7 +50,7 @@ export interface ProfileEditField {
   pattern?: string;
 }
 
-export interface ProfileEditFormProps {
+interface ProfileEditFormProps {
   title: string;
   fields: ProfileEditField[];
   onCancel: () => void;
@@ -73,14 +74,14 @@ export function ProfileEditForm({ title, fields, onCancel, onSave, saving = fals
     <>
       {plain && (
         <>
-          <h2 className="text-base font-semi-bold leading-6">{title}</h2>
+          <h2 className="text-body font-semi-bold leading-6">{title}</h2>
           <p className="text-body text-operational-muted">{t("description")}</p>
         </>
       )}
       <OperationalForm plain onSubmit={handleSubmit}>
         <div className="grid gap-4 sm:grid-cols-2">
           {fields.map((field) => (
-            <label key={field.name} className="flex min-w-0 flex-col gap-2 text-body font-medium text-black/70">
+            <label key={field.name} className="flex min-w-0 flex-col gap-2 text-body font-medium text-operational-muted">
               {field.label}
               <Input
                 placeholder={field.label}
@@ -100,15 +101,11 @@ export function ProfileEditForm({ title, fields, onCancel, onSave, saving = fals
         </div>
 
         {notice && (
-          <p role="note" className="rounded-medium bg-orange/8 px-4 py-3 text-body leading-6 text-black/65">
+          <p role="note" className="rounded-medium bg-orange/8 px-4 py-3 text-body leading-6 text-operational-muted">
             {notice}
           </p>
         )}
-        {error && (
-          <p role="alert" className="text-body text-red-700">
-            {error}
-          </p>
-        )}
+        <FormError message={error} />
 
         <div className="flex flex-col gap-3">
           <PrimaryButton

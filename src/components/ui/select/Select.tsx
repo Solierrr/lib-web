@@ -14,7 +14,7 @@ function getOptionValue<T>(option: SelectOption<T>): T {
   return typeof option === "string" ? (option as unknown as T) : option[1];
 }
 
-export interface SelectProps<T = string> {
+export interface SelectProps<T> {
   name: string;
   options: SelectOption<T>[];
   value?: T;
@@ -32,12 +32,29 @@ export function NativeSelect({ className = "", ...props }: SelectHTMLAttributes<
   return (
     <select
       {...props}
-      className={`min-h-10 rounded-medium border border-operational-border bg-input-bg px-4 py-2 font-medium text-black focus-visible:outline-2 focus-visible:outline-operational-ink disabled:opacity-50 ${className}`}
+      className={`min-h-10 rounded-medium border border-operational-border bg-input-bg px-4 py-2 font-medium text-black cursor-pointer disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-operational-ink disabled:opacity-50 ${className}`}
     />
   );
 }
 
-
+/**
+ * Select
+ *
+ * Dropdown com opções próprias (não usa o `<select>` nativo, já que o menu de
+ * opções dele não é estilizável de forma consistente entre navegadores).
+ *
+ * @param props - Propriedades do componente.
+ * @param props.name - Nome e rótulo acessível do campo.
+ * @param props.options - Lista de opções: cada item é uma string (rótulo == valor) ou uma tupla `[rótulo, valor]`.
+ * @param props.value - Valor selecionado (uso controlado).
+ * @param props.defaultValue - Valor selecionado inicialmente (uso não controlado).
+ * @param props.onChange - Chamado com o valor da opção escolhida, ou `undefined` quando a seleção é limpa.
+ * @param props.placeholder - Texto exibido quando nenhuma opção está selecionada.
+ * @param props.rounded - Define se o campo terá bordas completamente arredondadas.
+ * @param props.disabled - Desabilita a abertura do dropdown.
+ *
+ * @returns O componente de select renderizado.
+ */
 export default function Select<T = string>({
   name,
   options,

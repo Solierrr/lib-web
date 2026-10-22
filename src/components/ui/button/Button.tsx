@@ -5,6 +5,10 @@ import Icon, { type IconName } from "../icon/Icon.js";
 import { InvalidPropError } from "../../../shared/errors/InvalidProp.error.js";
 
 
+// Classes escritas por extenso (não interpoladas) para o Tailwind conseguir
+// gerar `aspect-button-*`/`shadow-medium-*` em build — ver uso análogo em
+// `Switcher.tsx`. Só cobre as cores usadas com fundo sólido (texto branco);
+// `bgColor`s claros (ex.: `Colors.WHITE`) não usam o relevo do `aspect-button-*`.
 const ASPECT_BUTTON_CLASSES: Partial<Record<Colors, string>> = {
   [Colors.ORANGE]: "aspect-button-orange",
   [Colors.BLACK]: "aspect-button-black shadow-medium-black",
@@ -36,7 +40,7 @@ export default function Button({
   title,
   description,
   rounded = false,
-  variant = "advanced",
+  variant = "flat",
   disabled = false,
   bgColor = Colors.ORANGE,
   txtColor = Colors.WHITE,
@@ -58,7 +62,6 @@ export default function Button({
   async function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
     if (!action) return;
-
 
 
     setIsLoading(true);

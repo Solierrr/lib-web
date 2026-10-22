@@ -1,14 +1,15 @@
-import logoUrl from "../../../assets/snowflake.svg";
+import { useTranslation } from "react-i18next";
 
 
-export interface LogoProps {
+interface LogoProps {
     width?: number;
     className?: string;
 }
 
 export default function Logo({ width = 3, className }: LogoProps) {
+    const { t } = useTranslation("branding");
 
     return (
-        <img src={logoUrl} className={`h-fit aspect-square ${className ?? ""}`} style={{ width: `${width}rem` }} alt="Solaria" />
+        <img src="/snowflake.svg" className={`h-fit aspect-square ${className}`} style={{ width: `${width}rem` }} alt={t("")} />
     );
 }
