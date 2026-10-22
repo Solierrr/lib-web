@@ -275,3 +275,69 @@ input:not([type="checkbox"]):not([type="radio"]) {
   --button-base: var(--color-operational-surface);
   @apply shadow-none;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--color-operational-ink);
+  caret-color: var(--color-operational-ink);
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+@utility icon-motion {
+  & .icon-contour { transition: d var(--motion-icon-duration) ease-in-out; }
+  @media (prefers-reduced-motion: reduce) {
+    & .icon-contour { transition: none; animation: none !important; }
+  }
+}
+
+@utility icon-motion-folder {
+  & .icon-contour { d: var(--icon-folder-closed); }
+  :is(a, button):is(:hover, :focus-visible) & .icon-contour { d: var(--icon-folder-open); }
+  @media (prefers-reduced-motion: reduce) {
+    :is(a, button):is(:hover, :focus-visible) & .icon-contour { d: var(--icon-folder-closed); }
+  }
+}
+
+@utility icon-motion-account {
+  & .icon-contour { d: var(--icon-account-square); }
+  :is(a, button):is(:hover, :focus-visible) & .icon-contour {
+    animation: icon-account-contour var(--motion-icon-sequence) ease-in-out both;
+  }
+}
+
+@keyframes icon-account-contour {
+  0%, 10% { d: var(--icon-account-square); }
+  45%, 55% { d: var(--icon-account-hexagon); }
+  90%, 100% { d: var(--icon-account-pentagon); }
+}
+
+@utility dialog-surface {
+  @apply animate-dialog-in motion-reduce:animate-none;
+  &[data-closing] { @apply animate-dialog-out motion-reduce:animate-none; }
+  &::backdrop { transition: opacity calc(var(--duration-dialog) * 1ms) ease-out; }
+  &[data-closing]::backdrop { opacity: 0; }
+}
+
+@keyframes dialog-in {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dialog-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(0.5rem); }
+}
+
+@utility button-flat-orange {
+  background-image: linear-gradient(135deg, color-mix(in srgb, var(--color-orange) 94%, var(--color-white)), var(--color-orange), color-mix(in srgb, var(--color-orange) 92%, var(--color-black)));
+}
+
+html:has(.access-shell) {
+  scrollbar-width: none;
+}
+
+html:has(.access-shell)::-webkit-scrollbar {
+  display: none;
+}
