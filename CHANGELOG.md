@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.6.0](https://github.com/Solierrr/lib-web/compare/v0.5.0...v0.6.0) (2026-10-23)
+
+
+### Features
+
+* add a persistent access shell with a stable logo ([a876f0d](https://github.com/Solierrr/lib-web/commit/a876f0d057e81a5b29e0d50296c6335cb8820b91))
+* add the service catalog components and brand icons ([4e1f8c5](https://github.com/Solierrr/lib-web/commit/4e1f8c501d14a45d309819201134bc0e7b99bc21))
+* add the surface group and group action components ([f2829e6](https://github.com/Solierrr/lib-web/commit/f2829e68109fc049434c785f442f1f63759277e9))
+* align the saas layout and sidebar with the web-app ([568b19b](https://github.com/Solierrr/lib-web/commit/568b19b34a7d6fd94b7006626d76fadf7803e165))
+* align the shared design tokens and styles with the web-app ([4cf7c76](https://github.com/Solierrr/lib-web/commit/4cf7c7668c350d82bb13a75c273d64d5aaaf1aa5))
+* share the status page and action link components ([c6c0234](https://github.com/Solierrr/lib-web/commit/c6c0234cda48c9d209e55a21c3ddf2993081e0c0))
+* sync the shared ui components with the web-app ([737c01d](https://github.com/Solierrr/lib-web/commit/737c01d129e0d9f61464ee2d9ecf3de0ddb03186))
+* truncate long toast messages with an expand control ([958a0ef](https://github.com/Solierrr/lib-web/commit/958a0ef9c1f1ade0e3beb6285b908b038504d5e2))
+
 ## [0.5.0](https://github.com/Solierrr/lib-web/compare/v0.4.0...v0.5.0) (2026-10-20)
 
 
