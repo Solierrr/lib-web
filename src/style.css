@@ -2,6 +2,7 @@
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
 @import "tw-shimmer";
+@import "./shared/styles/scrollbar.css" layer(base);
 
 ::view-transition-group(switcher-selection) {
   animation-duration: 250ms;
@@ -37,28 +38,6 @@
   h3, h4 { @apply text-label    font-medium     leading-6; }
   h6, h5 { @apply text-body     font-medium     leading-6; }
   p      { @apply font-medium  leading-6; }
-
-  ::-webkit-scrollbar             { @apply w-2 cursor-default!;      }
-  ::-webkit-scrollbar-track       { @apply bg-transparent;           }
-  ::-webkit-scrollbar-thumb       { @apply bg-orange rounded-full; }
-  ::-webkit-scrollbar-thumb:hover { @apply bg-dark-orange;         }
-
-  html, body {
-    scrollbar-gutter: stable;
-  }
-
-  html::-webkit-scrollbar-thumb,
-  body::-webkit-scrollbar-thumb {
-    opacity: 0;
-    transition: opacity 300ms ease-in-out;
-  }
-
-  html:hover::-webkit-scrollbar-thumb,
-  body:hover::-webkit-scrollbar-thumb,
-  html.scroll-active::-webkit-scrollbar-thumb,
-  body.scroll-active::-webkit-scrollbar-thumb {
-    opacity: 1;
-  }
 
   ::selection, mark { @apply bg-orange-500 text-white; }
   :focus-visible { @apply outline-[0.155rem] outline-offset-[0.165rem] rounded-md outline-input-outline;}

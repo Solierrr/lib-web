@@ -42,6 +42,7 @@
       "import": "./dist/observability.js"
     },
     "./style.css": "./dist/index.css",
+    "./scrollbar.css": "./dist/scrollbar.css",
     "./theme.css": "./dist/theme.css",
     "./email": {
       "types": "./dist/email/index.d.ts",
