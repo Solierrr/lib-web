@@ -1,5 +1,7 @@
 # @solaria.network/web-lib
 
+A scrollbar padrão também pode ser importada isoladamente de `@solaria.network/web-lib/scrollbar.css`, para documentos e prévias em iframe que não devem receber os demais estilos do kit. Ela já está incluída em `style.css`.
+
 Os tokens Tailwind são distribuídos em `@solaria.network/web-lib/theme.css` (diretiva `@theme`) e como `tailwindTheme` em `@solaria.network/web-lib/tokens`. O layout de e-mail utiliza esse mesmo tema no componente Tailwind do React Email, que converte classes em estilos inline para envio. Templates dentro de EmailLayout podem usar as classes dos tokens sem importar o CSS de browser.
 
 Biblioteca de interfaces React reutilizáveis para as aplicações web da Solierrr.

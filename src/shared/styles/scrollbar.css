@@ -1,0 +1,50 @@
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+  cursor: default;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-orange, #ff6500);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dark-orange, #c46717);
+}
+
+html,
+body {
+  scrollbar-gutter: stable;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+html:hover::-webkit-scrollbar-thumb,
+body:hover::-webkit-scrollbar-thumb,
+html.scroll-active::-webkit-scrollbar-thumb,
+body.scroll-active::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-orange, #ff6500) transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
+    transition: none;
+  }
+}
