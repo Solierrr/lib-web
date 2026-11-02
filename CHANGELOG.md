@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.7.0](https://github.com/Solierrr/lib-web/compare/v0.6.1...v0.7.0) (2026-11-02)
+
+
+### Features
+
+* standardize the storybook preview with the shared workflow ([ebe90b7](https://github.com/Solierrr/lib-web/commit/ebe90b77d5c4dd58541ed8290821058008e9cdc0))
+
+
+### Bug Fixes
+
+* grant the pages permissions only to the preview job ([66fce8c](https://github.com/Solierrr/lib-web/commit/66fce8c36f001a367bff15d6f4dfc362ecfc8c14))
+
 ## [0.6.1](https://github.com/Solierrr/lib-web/compare/v0.6.0...v0.6.1) (2026-11-01)
 
 
