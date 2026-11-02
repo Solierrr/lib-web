@@ -78,8 +78,11 @@ export default function Canvas({
       scene.width = rect.width;
       scene.height = rect.height;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.round(rect.width * dpr);
-      canvas.height = Math.round(rect.height * dpr);
+      const width = Math.round(rect.width * dpr);
+      const height = Math.round(rect.height * dpr);
+      if (canvas.width === width && canvas.height === height) return;
+      canvas.width = width;
+      canvas.height = height;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
       update();
     }
