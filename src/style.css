@@ -40,7 +40,7 @@
   p      { @apply font-medium  leading-6; }
 
   ::selection, mark { @apply bg-orange-500 text-white; }
-  :focus-visible { @apply outline-[0.155rem] outline-offset-[0.165rem] rounded-md outline-input-outline;}
+  :focus-visible { @apply outline-[0.155rem] outline-offset-[0.165rem] rounded-md outline-operational-ink;}
 }
 
 @utility no-leading {
