@@ -73,6 +73,7 @@ export default function Select<T = string>({
   const [open, setOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<T | undefined>(defaultValue);
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   const selectedValue = value !== undefined ? value : internalValue;
   const selectedOption = options.find((option) => getOptionValue(option) === selectedValue);
@@ -87,9 +88,13 @@ export default function Select<T = string>({
     }
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      triggerRef.current?.focus();
     }
 
+    const list = containerRef.current?.querySelector<HTMLElement>('[role="listbox"]');
+    (list?.querySelector<HTMLElement>('[aria-selected="true"]') ?? list?.querySelector<HTMLElement>('[role="option"]'))?.focus();
     document.addEventListener("mousedown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
     return () => {
@@ -114,6 +119,7 @@ export default function Select<T = string>({
   return (
     <div ref={containerRef} className={`relative w-fit ${className ?? ""}`}>
       <div
+        ref={triggerRef}
         className={`flex w-full items-center-safe justify-between gap-8 bg-input-bg ${selectedOption ? "pl-3 pr-4" : "px-4"} py-2 text-black font-medium cursor-pointer ${disabled ? "opacity-50 pointer-events-none" : ""} ${rounded ? "rounded-full" : "rounded-medium"}`}
         role="button"
         tabIndex={disabled ? -1 : 0}
@@ -124,9 +130,9 @@ export default function Select<T = string>({
         onClick={() => !disabled && setOpen((isOpen) => !isOpen)}
         onKeyDown={(event) => {
           if (disabled) return;
-          if (event.key === "Enter" || event.key === " ") {
+          if (event.key === "Enter" || event.key === " " || event.key === "ArrowDown" || event.key === "ArrowUp") {
             event.preventDefault();
-            setOpen((isOpen) => !isOpen);
+            setOpen((isOpen) => (event.key === "Enter" || event.key === " " ? !isOpen : true));
           }
         }}>
         <span className="flex items-center-safe gap-2">

@@ -15,6 +15,7 @@ export interface SidebarProps {
   collapseLabel?: string;
   expandLabel?: string;
   hideToggle?: boolean;
+  label?: string;
 }
 
 export default function Sidebar({
@@ -29,6 +30,7 @@ export default function Sidebar({
   collapseLabel = "Recolher menu",
   expandLabel = "Expandir menu",
   hideToggle = false,
+  label,
 }: SidebarProps) {
   const [internalCollapsed, setCollapsed] = useState(defaultCollapsed);
   const collapsed = controlledCollapsed ?? internalCollapsed;
@@ -36,6 +38,7 @@ export default function Sidebar({
   return (
     <SidebarContext.Provider value={collapsed}>
       <aside
+        aria-label={label}
         className={`flex shrink-0 flex-col h-full overflow-hidden bg-sidebar-surface transition-[width] duration-250 ease-in-out motion-reduce:transition-none ${collapsed ? "w-16" : "w-64"} ${className ?? ""}`}>
         {header}
         {navigation ?? (
